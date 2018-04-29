@@ -100,7 +100,7 @@
         android:layout_marginStart="8dp"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:text="Daily"
+        android:text="@string/daily_button_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent" />
@@ -115,7 +115,7 @@
         android:layout_marginStart="8dp"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:text="Hourly"
+        android:text="@string/hourly_button_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline" />
@@ -130,7 +130,7 @@
         android:layout_marginStart="8dp"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:text="Minutely"
+        android:text="@string/minutely_button_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline2" />

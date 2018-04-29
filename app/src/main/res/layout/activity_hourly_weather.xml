@@ -17,7 +17,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
         android:textStyle="bold"
-        android:text="Hourly Forecast" />
+        android:text="@string/hourly_forecast" />
 
     <ListView
         android:id="@+id/hourlyListView"
