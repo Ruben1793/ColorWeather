@@ -53,4 +53,30 @@
         app:layout_constraintLeft_toRightOf="@+id/currentTempTextView"
         app:layout_constraintTop_toTopOf="@+id/currentTempTextView" />
 
+    <TextView
+        android:id="@+id/highestTempTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="sans-serif-light"
+        android:text="H:19°"
+        android:textColor="#ffff"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentTempTextView" />
+
+    <TextView
+        android:id="@+id/lowestTempTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="sans-serif-light"
+        android:text="L:12°"
+        android:textColor="#ffff"
+        android:textSize="24sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentTempTextView" />
+
 </android.support.constraint.ConstraintLayout>
