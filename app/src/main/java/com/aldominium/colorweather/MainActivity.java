@@ -2,10 +2,12 @@ package com.aldominium.colorweather;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -20,19 +22,26 @@ public class MainActivity extends Activity {
     @BindView(R.id.highestTempTextView) TextView highestTempTextView;
     @BindView(R.id.lowestTempTextView) TextView lowestTempTextView;
 
-
+    @BindDrawable(R.drawable.clear_night) Drawable clearNight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        CurrentWeather currentWeather = new CurrentWeather(MainActivity.this);
+        currentWeather.setIconImage("cloudy");
+        currentWeather.setDescription("Sunny Day");
+        currentWeather.setCurrentTemperature("19");
+        currentWeather.setHighestTemperature("H: 25");
+        currentWeather.setLowestTemperature("L: 10");
         
-       // iconImageView;
-        descriptionTextView.setText("Sunny Day");
-        currentTempTextView.setText("19");
-        highestTempTextView.setText("H:25");
-        lowestTempTextView.setText("L:10");
+        iconImageView.setImageDrawable(currentWeather.getIconDrawableResource());
+        descriptionTextView.setText(currentWeather.getDescription());
+        currentTempTextView.setText(currentWeather.getCurrentTemperature());
+        highestTempTextView.setText(currentWeather.getHighestTemperature());
+        lowestTempTextView.setText(currentWeather.getLowestTemperature());
     }
 
     @OnClick(R.id.dailyWeatherTextView)
