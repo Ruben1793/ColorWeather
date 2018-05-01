@@ -3,28 +3,36 @@ package com.aldominium.colorweather;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
+
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends Activity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
-   private TextView dailyWatherTextView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+    }
 
-        dailyWatherTextView = findViewById(R.id.dailyWeatherTextView);
+    @OnClick(R.id.dailyWeatherTextView)
+    public void dailyWeatherClick(){
+        Intent dailyActivityIntent = new Intent(MainActivity.this, DailyWeatherActivity.class);
+        startActivity(dailyActivityIntent);
+    }
 
-        dailyWatherTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent dailyActivityIntent = new Intent(MainActivity.this, DailyWeatherActivity.class);
-                startActivity(dailyActivityIntent);
-            }
-        });
+    @OnClick(R.id.hourlyWeatherTextView)
+    public void hourlyWeatherClick(){
+        Intent hourlyActivityIntent = new Intent(MainActivity.this, HourlyWeatherActivity.class);
+        startActivity(hourlyActivityIntent);
+    }
+
+    @OnClick(R.id.minutelyWeatherTextView)
+    public void minutelyWeatherClick(){
+        Intent minutelyActivityIntent = new Intent(MainActivity.this, MinutelyWeatherActivity.class);
+        startActivity(minutelyActivityIntent);
     }
 }
