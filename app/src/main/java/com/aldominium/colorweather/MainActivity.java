@@ -15,6 +15,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,19 +42,6 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        CurrentWeather currentWeather = new CurrentWeather(MainActivity.this);
-        currentWeather.setIconImage("cloudy");
-        currentWeather.setDescription("Sunny Day");
-        currentWeather.setCurrentTemperature("19");
-        currentWeather.setHighestTemperature("H: 25");
-        currentWeather.setLowestTemperature("L: 10");
-        
-        iconImageView.setImageDrawable(currentWeather.getIconDrawableResource());
-        descriptionTextView.setText(currentWeather.getDescription());
-        currentTempTextView.setText(currentWeather.getCurrentTemperature());
-        highestTempTextView.setText(currentWeather.getHighestTemperature());
-        lowestTempTextView.setText(currentWeather.getLowestTemperature());
-
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
         String url ="https://api.darksky.net/forecast/797573bdd40bc15d7f0536c8b663d042/37.8267,-122.4233";
@@ -60,7 +51,16 @@ public class MainActivity extends Activity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d(TAG,"Response is: " + response.substring(0, 500));
+                        try {
+                            CurrentWeather currentWeather = getCurrentWeatherFromJson(response);
+                            iconImageView.setImageDrawable(currentWeather.getIconDrawableResource());
+                            descriptionTextView.setText(currentWeather.getDescription());
+                            currentTempTextView.setText(currentWeather.getCurrentTemperature());
+                            highestTempTextView.setText(currentWeather.getHighestTemperature());
+                            lowestTempTextView.setText(currentWeather.getLowestTemperature());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -89,5 +89,28 @@ public class MainActivity extends Activity {
     public void minutelyWeatherClick(){
         Intent minutelyActivityIntent = new Intent(MainActivity.this, MinutelyWeatherActivity.class);
         startActivity(minutelyActivityIntent);
+    }
+
+    private CurrentWeather getCurrentWeatherFromJson(String json) throws JSONException{
+        JSONObject jsonObject = new JSONObject(json);
+        JSONObject jsonWithCurrentWeather = jsonObject.getJSONObject("currently");
+        JSONObject jsonWithDailyWeather = jsonObject.getJSONObject("daily");
+        JSONArray jsonWithDailyWeatherData = jsonWithDailyWeather.getJSONArray("data");
+        JSONObject jsonWithTodayData = jsonWithDailyWeatherData.getJSONObject(0);
+
+        String summary = jsonWithCurrentWeather.getString("summary");
+        String icon = jsonWithCurrentWeather.getString("icon");
+        String temperature = jsonWithCurrentWeather.getDouble("temperature") + "";
+        String maxTemperature = jsonWithTodayData.getDouble("temperatureMax") + "";
+        String minTemperature = jsonWithTodayData.getDouble("temperatureMin") + "";
+
+        CurrentWeather currentWeather = new CurrentWeather(MainActivity.this);
+        currentWeather.setDescription(summary);
+        currentWeather.setIconImage(icon);
+        currentWeather.setCurrentTemperature(temperature);
+        currentWeather.setHighestTemperature(maxTemperature);
+        currentWeather.setLowestTemperature(minTemperature);
+
+        return currentWeather;
     }
 }
