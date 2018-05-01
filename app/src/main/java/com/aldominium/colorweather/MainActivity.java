@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
 
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://www.google.com";
+        String url ="https://api.darksky.net/forecast/797573bdd40bc15d7f0536c8b663d042/37.8267,-122.4233";
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
