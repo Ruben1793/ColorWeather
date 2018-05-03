@@ -14,6 +14,8 @@ import java.util.ArrayList;
 
 public class DailyWeatherAdapter extends BaseAdapter{
 
+    public static final String TAG = DailyWeatherAdapter.class.getSimpleName();
+
     ArrayList<Day> days;
     Context context;
 
@@ -39,7 +41,9 @@ public class DailyWeatherAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
-        view = LayoutInflater.from(context).inflate(R.layout.daily_list_item,viewGroup,false);
+        if(view == null){
+            view = LayoutInflater.from(context).inflate(R.layout.daily_list_item,viewGroup,false);
+        }
 
         Day day = days.get(position);
 
