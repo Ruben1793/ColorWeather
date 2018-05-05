@@ -59,7 +59,7 @@ public class DailyWeatherAdapter extends BaseAdapter{
         viewHolder.dayTitle.setText(day.getDayName());
         viewHolder.dayDescription.setText(day.getWeatherDescription());
         viewHolder.dayRainProbability.setText(day.getRainProbability());
-        
+
         return view;
     }
 

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_gradient_blue"
+    >
+
+    <TextView
+        style="@style/mainFont"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/hourlyTitleTextView"
+        tools:text="19:00"
+        android:textStyle="normal|bold"
+        />
+
+    <TextView
+        style="@style/mainFont"
+        android:textSize="18dp"
+        android:id="@+id/hourlyDescriptionTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Sunny"
+        />
+</LinearLayout>
