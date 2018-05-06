@@ -3,6 +3,7 @@ package com.aldominium.colorweather;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.aldominium.colorweather.Adapters.HourlyWeatherAdapter;
 
@@ -14,6 +15,8 @@ import butterknife.ButterKnife;
 public class HourlyWeatherActivity extends Activity {
 
     @BindView(R.id.hourlyListView) ListView hourlyListView;
+    @BindView(R.id.hourlyNoDataTextView) TextView NoDataTextView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,5 +28,7 @@ public class HourlyWeatherActivity extends Activity {
 
         HourlyWeatherAdapter hourlyWeatherAdapter = new HourlyWeatherAdapter(this, hours);
         hourlyListView.setAdapter(hourlyWeatherAdapter);
+
+        hourlyListView.setEmptyView(NoDataTextView);
     }
 }

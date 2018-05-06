@@ -29,4 +29,13 @@
         android:dividerHeight="10dp"
         android:layout_margin="5dp"
         />
+
+    <TextView
+        style="@style/mainFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/hourlyNoDataTextView"
+        android:text="@string/no_data_to_display"
+        />
 </RelativeLayout>
