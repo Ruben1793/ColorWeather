@@ -22,22 +22,7 @@ public class MinutelyWeatherActivity extends Activity {
         setContentView(R.layout.activity_minutely_weather);
         ButterKnife.bind(this);
 
-        ArrayList<Minute> minutes = new ArrayList<>();
-        Minute minute = new Minute();
-        minute.setTitle("17:55");
-        minute.setRainProbability("99%");
-
-        Minute minute2 = new Minute();
-        minute2.setTitle("20:55");
-        minute2.setRainProbability("99%");
-
-        Minute minute3 = new Minute();
-        minute3.setTitle("20:55");
-        minute3.setRainProbability("99%");
-
-        minutes.add(minute);
-        minutes.add(minute2);
-        minutes.add(minute3);
+        ArrayList<Minute> minutes = getIntent().getParcelableArrayListExtra(MainActivity.MINUTES_ARRAY_LIST);
 
         MinutelyWeatherAdapter minutelyWeatherAdapter = new MinutelyWeatherAdapter(this, minutes);
         minutelyRecyclerView.setAdapter(minutelyWeatherAdapter);

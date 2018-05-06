@@ -47,6 +47,7 @@ public class MainActivity extends Activity {
     public static final String ICON = "icon";
     public static final String DAYS_ARRAY_LIST = "days";
     public static final String HOURS_ARRAY_LIST = "hours";
+    public static final String MINUTES_ARRAY_LIST = "minutes";
 
     @BindView(R.id.iconImageView) ImageView iconImageView;
     @BindView(R.id.descriptionTextView) TextView descriptionTextView;
@@ -79,11 +80,6 @@ public class MainActivity extends Activity {
                             days = getDailyWeatherFromJson(response);
                             hours = getHourlyWeaterFromJson(response);
                             minutes = getMinutelyWeaterFromJson(response);
-
-                            for (Minute minute : minutes) {
-                                Log.d(TAG, minute.getTitle());
-                                Log.d(TAG, minute.getRainProbability());
-                            }
 
                             CurrentWeather currentWeather = getCurrentWeatherFromJson(response);
                             iconImageView.setImageDrawable(currentWeather.getIconDrawableResource());
@@ -123,6 +119,7 @@ public class MainActivity extends Activity {
     @OnClick(R.id.minutelyWeatherTextView)
     public void minutelyWeatherClick(){
         Intent minutelyActivityIntent = new Intent(MainActivity.this, MinutelyWeatherActivity.class);
+        minutelyActivityIntent.putExtra(MINUTES_ARRAY_LIST, minutes);
         startActivity(minutelyActivityIntent);
     }
 
