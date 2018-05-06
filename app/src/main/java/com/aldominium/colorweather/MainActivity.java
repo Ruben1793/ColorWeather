@@ -44,7 +44,7 @@ public class MainActivity extends Activity {
     public static final String TEMPERATURE_MAX = "temperatureMax";
     public static final String TEMPERATURE_MIN = "temperatureMin";
     public static final String MINUTELY = "minutely";
-
+    public static final String ICON = "icon";
 
     @BindView(R.id.iconImageView) ImageView iconImageView;
     @BindView(R.id.descriptionTextView) TextView descriptionTextView;
@@ -53,6 +53,10 @@ public class MainActivity extends Activity {
     @BindView(R.id.lowestTempTextView) TextView lowestTempTextView;
 
     @BindDrawable(R.drawable.clear_night) Drawable clearNight;
+
+    ArrayList<Day> days;
+    ArrayList<Hour> hours;
+    ArrayList<Minute> minutes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,9 +74,9 @@ public class MainActivity extends Activity {
                     @Override
                     public void onResponse(String response) {
                         try {
-                           // ArrayList<Day> days = getDailyWeatherFromJson(response);
-                           // ArrayList<Hour> hours = getHourlyWeaterFromJson(response);
-                            ArrayList<Minute> minutes = getMinutelyWeaterFromJson(response);
+                            days = getDailyWeatherFromJson(response);
+                            hours = getHourlyWeaterFromJson(response);
+                            minutes = getMinutelyWeaterFromJson(response);
 
                             for (Minute minute : minutes) {
                                 Log.d(TAG, minute.getTitle());
@@ -103,6 +107,7 @@ public class MainActivity extends Activity {
     @OnClick(R.id.dailyWeatherTextView)
     public void dailyWeatherClick(){
         Intent dailyActivityIntent = new Intent(MainActivity.this, DailyWeatherActivity.class);
+        dailyActivityIntent.putExtra("days", days);
         startActivity(dailyActivityIntent);
     }
 
@@ -126,7 +131,7 @@ public class MainActivity extends Activity {
         JSONObject jsonWithTodayData = jsonWithDailyWeatherData.getJSONObject(0);
 
         String summary = jsonWithCurrentWeather.getString(SUMMARY);
-        String icon = jsonWithCurrentWeather.getString("icon");
+        String icon = jsonWithCurrentWeather.getString(ICON);
         String temperature = Math.round(jsonWithCurrentWeather.getDouble(TEMPERATURE)) + "";
         String maxTemperature = Math.round(jsonWithTodayData.getDouble(TEMPERATURE_MAX)) + "";
         String minTemperature = Math.round(jsonWithTodayData.getDouble(TEMPERATURE_MIN)) + "";
@@ -147,6 +152,9 @@ public class MainActivity extends Activity {
         JSONObject jsonObject = new JSONObject(json);
         JSONObject jsonWithDailyWeather = jsonObject.getJSONObject(DAILY);
         JSONArray jsonWithDailyWeatherData = jsonWithDailyWeather.getJSONArray(DATA);
+
+        String timezone = jsonObject.getString(TIMEZONE);
+        dateFormat.setTimeZone(TimeZone.getTimeZone(timezone));
 
         for (int i = 0; i < jsonWithDailyWeatherData.length(); i++) {
             Day day = new Day();
