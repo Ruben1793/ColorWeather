@@ -22,6 +22,7 @@ import org.json.JSONObject;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.TimeZone;
 
 import butterknife.BindDrawable;
 import butterknife.BindView;
@@ -56,13 +57,14 @@ public class MainActivity extends Activity {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            ArrayList<Day> days = getDailyWeatherFromJson(response);
-                            for (Day day : days) {
-                                Log.d(TAG, day.getDayName());
-                                Log.d(TAG, day.getRainProbability());
-                                Log.d(TAG, day.getWeatherDescription());
+                           // ArrayList<Day> days = getDailyWeatherFromJson(response);
+                            ArrayList<Hour> hours = getHourlyWeaterFromJson(response);
 
+                            for (Hour hour : hours) {
+                                Log.d(TAG, hour.getTitle());
+                                Log.d(TAG, hour.getWeatherDescription());
                             }
+
                             CurrentWeather currentWeather = getCurrentWeatherFromJson(response);
                             iconImageView.setImageDrawable(currentWeather.getIconDrawableResource());
                             descriptionTextView.setText(currentWeather.getDescription());
@@ -153,6 +155,9 @@ public class MainActivity extends Activity {
         DateFormat dateFormat = new SimpleDateFormat("HH:mm");
         ArrayList<Hour> hours = new ArrayList<>();
         JSONObject jsonObject = new JSONObject(json);
+
+        String timezone = jsonObject.getString("timezone");
+        dateFormat.setTimeZone(TimeZone.getTimeZone(timezone));
 
         JSONObject jsonWithHourlyWeather = jsonObject.getJSONObject("hourly");
         JSONArray jsonWithHourlyWeatherData = jsonWithHourlyWeather.getJSONArray("data");
