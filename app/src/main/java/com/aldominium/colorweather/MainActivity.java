@@ -62,6 +62,9 @@ public class MainActivity extends Activity {
     ArrayList<Hour> hours;
     ArrayList<Minute> minutes;
 
+    private String mLatitude = "37.8267";
+    private String mLongitude = "-122.4233";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,11 +73,17 @@ public class MainActivity extends Activity {
 
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="https://api.darksky.net/forecast/797573bdd40bc15d7f0536c8b663d042/37.8267,-122.4233?units=si";
+
+        String foreCastURL = "https://api.darksky.net/forecast";
+        String apiKey = "797573bdd40bc15d7f0536c8b663d042";
+        String units = "units=si";
+
+        final String urlForeCast = foreCastURL + "/" + apiKey + "/" + mLatitude + "," + mLongitude + "?" + units;
+        //String url ="https://api.darksky.net/forecast/797573bdd40bc15d7f0536c8b663d042/37.8267,-122.4233?units=si";
         //String url ="https://api.darksky.net/forecast/797573bdd40bc15d7f0536c8b663d0/37.8267,-122.4233?units=si"; //Error
 
         // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, urlForeCast,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
