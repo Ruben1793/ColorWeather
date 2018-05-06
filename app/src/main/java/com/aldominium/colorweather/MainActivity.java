@@ -46,6 +46,7 @@ public class MainActivity extends Activity {
     public static final String MINUTELY = "minutely";
     public static final String ICON = "icon";
     public static final String DAYS_ARRAY_LIST = "days";
+    public static final String HOURS_ARRAY_LIST = "hours";
 
     @BindView(R.id.iconImageView) ImageView iconImageView;
     @BindView(R.id.descriptionTextView) TextView descriptionTextView;
@@ -115,6 +116,7 @@ public class MainActivity extends Activity {
     @OnClick(R.id.hourlyWeatherTextView)
     public void hourlyWeatherClick(){
         Intent hourlyActivityIntent = new Intent(MainActivity.this, HourlyWeatherActivity.class);
+        hourlyActivityIntent.putExtra(HOURS_ARRAY_LIST,hours);
         startActivity(hourlyActivityIntent);
     }
 
