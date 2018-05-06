@@ -45,6 +45,7 @@ public class MainActivity extends Activity {
     public static final String TEMPERATURE_MIN = "temperatureMin";
     public static final String MINUTELY = "minutely";
     public static final String ICON = "icon";
+    public static final String DAYS_ARRAY_LIST = "days";
 
     @BindView(R.id.iconImageView) ImageView iconImageView;
     @BindView(R.id.descriptionTextView) TextView descriptionTextView;
@@ -107,7 +108,7 @@ public class MainActivity extends Activity {
     @OnClick(R.id.dailyWeatherTextView)
     public void dailyWeatherClick(){
         Intent dailyActivityIntent = new Intent(MainActivity.this, DailyWeatherActivity.class);
-        dailyActivityIntent.putExtra("days", days);
+        dailyActivityIntent.putExtra(DAYS_ARRAY_LIST, days);
         startActivity(dailyActivityIntent);
     }
 
