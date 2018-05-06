@@ -19,12 +19,13 @@
         android:id="@+id/dailyListDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:textSize="18dp"
         tools:text="Partly Cloudy in the morning" />
 
     <TextView
         style="@style/mainFont"
         android:id="@+id/dailyListProbability"
+        android:textSize="18dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="rain probability 34%" />
