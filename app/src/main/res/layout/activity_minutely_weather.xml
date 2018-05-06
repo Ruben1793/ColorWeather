@@ -28,4 +28,13 @@
         android:layout_margin="5dp"
         android:layout_below="@+id/MinutelyWeatherTitleTextView"
      />
+
+    <TextView
+        style="@style/mainFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_data_to_display"
+        android:layout_centerInParent="true"
+        android:id="@+id/minutelyNoDataTextView"/>
+
 </RelativeLayout>
