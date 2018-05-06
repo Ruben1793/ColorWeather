@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -70,6 +71,7 @@ public class MainActivity extends Activity {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
         String url ="https://api.darksky.net/forecast/797573bdd40bc15d7f0536c8b663d042/37.8267,-122.4233?units=si";
+        //String url ="https://api.darksky.net/forecast/797573bdd40bc15d7f0536c8b663d0/37.8267,-122.4233?units=si"; //Error
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -94,7 +96,7 @@ public class MainActivity extends Activity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d(TAG,"That didn't work!");
+                Toast.makeText(MainActivity.this, "Connection Error", Toast.LENGTH_LONG).show();
             }
         });
 
