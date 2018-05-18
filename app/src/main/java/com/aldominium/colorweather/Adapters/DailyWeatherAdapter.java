@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.aldominium.colorweather.Day;
+import com.aldominium.colorweather.Models.Day;
 import com.aldominium.colorweather.R;
 
 import java.util.ArrayList;

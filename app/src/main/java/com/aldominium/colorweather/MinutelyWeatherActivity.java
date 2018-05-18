@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.aldominium.colorweather.Adapters.MinutelyWeatherAdapter;
+import com.aldominium.colorweather.Models.Minute;
 
 import java.util.ArrayList;
 

@@ -4,6 +4,7 @@ import android.app.ListActivity;
 import android.os.Bundle;
 
 import com.aldominium.colorweather.Adapters.DailyWeatherAdapter;
+import com.aldominium.colorweather.Models.Day;
 
 import java.util.ArrayList;
 

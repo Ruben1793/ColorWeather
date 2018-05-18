@@ -6,6 +6,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.aldominium.colorweather.Adapters.HourlyWeatherAdapter;
+import com.aldominium.colorweather.Models.Hour;
 
 import java.util.ArrayList;
 

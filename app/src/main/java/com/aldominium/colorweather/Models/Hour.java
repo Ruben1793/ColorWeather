@@ -1,4 +1,4 @@
-package com.aldominium.colorweather;
+package com.aldominium.colorweather.Models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
