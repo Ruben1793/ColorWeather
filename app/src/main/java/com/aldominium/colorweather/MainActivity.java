@@ -190,8 +190,9 @@ public class MainActivity extends Activity implements
         String foreCastURL = "https://api.darksky.net/forecast";
         String apiKey = "797573bdd40bc15d7f0536c8b663d042";
         String units = "units=si";
+        String lan = "lan=en";
 
-        final String urlForeCast = foreCastURL + "/" + apiKey + "/" + mLatitude + "," + mLongitude + "?" + units;
+        final String urlForeCast = foreCastURL + "/" + apiKey + "/" + mLatitude + "," + mLongitude + "?" + units + "&" + lan;
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, urlForeCast,
